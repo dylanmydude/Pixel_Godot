@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=3 uid="uid://byiiifxbkhjic"]
+
+[ext_resource type="Texture2D" uid="uid://jkgofenlmnfi" path="res://assets/sprites/Tiny RPG Character Asset Pack v1.02 -Free Soldier&Orc/Orc/Orc/Orc-Walk.png" id="1_ll32x"]
+[ext_resource type="Script" path="res://scripts/orc.gd" id="1_n5q3m"]
+[ext_resource type="PackedScene" uid="uid://ngog6pouhttq" path="res://scene/killarea.tscn" id="2_q4c7w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcuql"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(35, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld20r"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(135, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noyn7"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(235, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqd0o"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(335, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dag4p"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(435, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojfq3"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(535, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s2xa"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(635, 32, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euhm4"]
+atlas = ExtResource("1_ll32x")
+region = Rect2(735, 32, 35, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sli0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcuql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld20r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noyn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqd0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dag4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojfq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s2xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euhm4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hijki"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="GDScript" id="GDScript_cy8n4"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="orc" type="Node2D"]
+script = ExtResource("1_n5q3m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sli0k")
+autoplay = "default"
+frame_progress = 0.916741
+
+[node name="killarea" parent="AnimatedSprite2D" instance=ExtResource("2_q4c7w")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/killarea"]
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_hijki")
+script = SubResource("GDScript_cy8n4")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(8, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-10, 0)
