@@ -1,1 +1,4 @@
-tutorial basically need to add my own art and features <3 <3
+functionality from turotial
+new fucntionality needed
+eventually art work
+start again with wireframing
